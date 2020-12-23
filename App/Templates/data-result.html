@@ -1,0 +1,95 @@
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+
+<div class="col-md-10" style="margin: 2% 10% 7%;">
+<h3>
+<span class="material-icons">pie_chart</span>
+Visualizar Gráficos</h3>
+<br/><br/><br/>
+
+<input type="hidden" id="user_id" value="4" />
+<canvas id="myChart" height="100"></canvas>
+
+<!-- 
+      
+<input type="text" id="user_id" />
+<input type="button" id="getUser" value="Get Details"/>
+<div class="user-content" style="display: none;">
+    <h4>User Details</h4>
+    <p>Name: <span id="userName"></span></p>
+    <p>Produto: <span id="produto"></span></p>
+    <p>Titulo: <span id="titulo"></span></p>
+    <p>Questão: <span id="questao"></span></p>
+    <p>Resposta: <span id="resposta"></span></p>
+</div> -->
+
+
+
+<script>
+
+  async function load() {
+       var user_id = $('#user_id').val();
+        $.ajax({
+            type:'POST',
+            url:'App/Control/getData.php',
+            dataType: "json",
+            data:{user_id:user_id},
+            success:function(data){
+                var titulos = [];
+
+                var dataValues = [];
+                var total = [];
+
+                for(let i in data) {
+                    titulos.push(data[i]['titulo']);
+
+                    
+                    total.push(data[i]['description_question']); 
+                    dataValues.push(data[i]['total']);
+                }
+                   
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: titulos,
+                    datasets: [{
+                    label: 'TOTAL DE FEEDBACKS',
+                          data: dataValues,
+                          backgroundColor: ['rgba(255, 99, 132, 1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)' ],
+                          borderColor: [
+                          'rgba(255, 99, 132, 1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)'
+                          ],
+                          borderWidth: 1
+                    }]
+                   },
+                   options: {
+                         scales: {
+                          xAxes: [{ barPercentage: 0.05 }], // ajustar expressura da barra
+                               yAxes: [{
+
+                               ticks: {
+                                  beginAtZero: true
+                               }
+                               }]
+                         }
+                     }
+                 });
+             }
+        });
+  }
+
+ window.onload = load;
+
+</script>
+
+
+
+
+
+
+
+

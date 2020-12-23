@@ -1,0 +1,118 @@
+<h3 class="text-left" style="margin-left:5%;">
+	
+	<span class="material-icons ">people_alt</span>
+	Listar Usuários </h3>
+<br/><br/><br/>
+<div class="data-table-area " style="margin-left:3%;">
+    <div class="container-fluid"  >
+       <div class="col-md-12 col-sm-12 col-xs-12" id="main"   >
+         <div class="data-table-list" >
+			<table id="tabela"  class="table table-responsive "  >
+				<thead>
+					<tr >
+					 <th width="5%">Login <i class="fas fa-arrows-alt-v"></th>
+					 <th width="20%">Nome <i class="fas fa-arrows-alt-v"></th>
+					 <th width="5%">Empresa <i class="fas fa-arrows-alt-v"></th>
+					 <th width="5%">Produto <i class="fas fa-arrows-alt-v"></th>
+					 <th width="10%">Nivel <i class="fas fa-arrows-alt-v"></th>
+					 <th width="10%"> Ações </th>
+					</tr>
+				</thead>
+				<tbody>
+			     {% for usuario in usuarios %}
+						<tr>
+						  <td class="text-center">{{usuario.login_user}}</td>
+						  <td class="text-center">{{usuario.name_user}}</td>
+						  <td class="text-center">{{usuario.empresa}}</td>
+						  <td class="text-center">{{usuario.produto}}</td>
+						  <td class="text-center">{{usuario.nivel}}</td>
+						 
+						  <td>
+						  	 <form method="POST" action="index.php?class=UserEdit&method=formEdit">
+							<div class="form-group">
+						   	    <input type="hidden" name="id"           value="{{usuario.id}}">
+						   	    <input type="hidden" name="id_niv"       value="{{usuario.idniv}}">
+						   	    <input type="hidden" name="id_product"   value="{{usuario.id_product}}">
+						   	    <input type="hidden" name="id_companie"  value="{{usuario.idcomp}}">
+						   	    <input type="hidden" name="empresa"      value="{{usuario.empresa}}">
+						   	    <input type="hidden" name="login_user"   value="{{usuario.login_user}}">
+						   	    <input type="hidden" name="name_user"    value="{{usuario.name_user}}">
+						   	    <input type="hidden" name="product"      value="{{usuario.produto}}">
+						   	    <input type="hidden" name="name_lv"      value="{{usuario.nivel}}">
+					          </div>
+					            <!-- <input type="submit" name="editar_user" value="Reset" id="reset_senha" class="btn btn-xs btn-warning fas fa-key" > -->
+					            <button type="submit" class="btn btn-xs btn-warning " name="reset_password" id="reset_pass" data-touserid="{{usuario.id}}">Reset <i class="fas fa-key"></i>
+					            	<input type="hidden" name="user_id" value="{{usuario.id}}">
+					            </button>
+
+					             <p id="msg_reset_sucess" style="display:none;"> <span class="material-icons">done_all</span></p>
+
+						  	    <input type="submit" name="editar_user" value="Editar" id="edit" class="btn btn-xs btn-warning" >
+						  	     <p id="add_message" style="display:none;"> <span class="material-icons">done_all</span></p>
+
+                                <a  data-toggle="popover" title="Excluir Usuário" data-placement="top" data-content="Deseja excluir esse usuário ?"  >
+                                  <input type="button"    value="NÃO" id="not_del"  class="btn btn-xs btn-warning " data-touserid="{{usuario.id}}"
+                                   style="display:none;" onclick="notDelete(this)" />
+
+                                  <input type="button"  value="Excluir" id="delete"  data-touserid="{{usuario.id}}" onclick="deleteOk(this)" class="deletar btn btn-xs btn-primary"  />
+                                  <input type="submit" name="excluir_user" value="SIM" data-touserid="{{usuario.id}}" class="delet btn btn-xs btn-danger" style="display:none;" id="del">
+                                 </a>
+					        </form>
+						  </td>
+					   </tr>
+			      {% endfor %}
+				</tbody>
+            </table>
+         </div>
+      </div>
+    </div>
+ </div> 
+ <br/>
+
+
+
+
+<script>
+       $(document).ready(function(){
+         $('[data-toggle="popover"]').popover();   
+       });
+
+    
+      function deleteOk(value) {
+        var btnConfirm = $(value).attr('value', 'SIM');       
+        $(value).addClass("btn-danger");
+        $(value).css({"padding": "1px 5px"});
+        btnConfirm.click(function() {
+        	$(value).attr('type', 'submit');
+            message("Usuário deletado");
+        	//$(value).removeClass("btn-primary");
+
+        });
+        $(value).attr('name', 'excluir_user');
+        notDelete(elemento);
+      }
+
+      function notDelete() {
+      	var elemento = $("#not_del").attr('data-touserid');
+      	elemento.css({"display": "inline"});
+        document.getElementById('not_del').addEventListener("click", function() {
+        	$(this).hide();
+        	// $(elemento).attr('value', 'Excluir');
+        })
+      }
+
+
+    $(document).on("click", "#reset_pass", function(){
+        var x = document.getElementById("msg_reset_sucess");
+	    document.getElementById("msg_reset_sucess").innerHTML = 'Senha resetada para 12345 ';
+	    x.className = "show";
+	    setTimeout(function() {
+	     x.className = x.className.replace("show", ""); 
+	   }, 8000);
+    })
+
+
+   
+</script>
+
+     

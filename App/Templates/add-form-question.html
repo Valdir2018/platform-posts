@@ -1,0 +1,84 @@
+                 
+                <h3 class="text-left" style="margin-left:10%; display:flex;">
+                 <span class="material-icons">create</span>
+                 Adicionar Questões na Postagem</h3>
+                 <div><br/><br/><br/></div>
+                    {% for pergunta in perguntas %}
+                    <form class="form-horizontal">
+                     <p id="add_message" style="display:none;"> <span class="material-icons">done_all</span></p>
+                     <!-- <p id="add_alter" style="display:none;">Alternativa adicionada com sucesso ! <span class="material-icons">done_all</span></p> -->
+
+		         	<div class="col-md-6">
+			         	 <div class="form-group">
+			         	  	<label class="control-label col-md-2" for="">Postagem</label>
+			         	  		<input type="hidden" name="post_id" id="post_id" class="form-control border-none" value="{{pergunta.id}}"  disabled="">
+			         	  	<div class="col-md-8">
+			         	  	   	<input type="text"  id="" class="form-control border-none" value="{{pergunta.titulo_post}}" disabled="">
+			         	  		<br/>
+
+			         	  	</div>
+			         	  </div>
+
+			         	    <div class="form-group">
+			         	   	<label class="control-label col-md-2" for="add">Pergunta</label>
+			         	  	  <div class="col-md-8">
+			         	  	  	<input type="text" name="pergunta" id="pergunta" class="form-control border-none" value="" placeholder="Add pergunta" >
+			         	  	  </div>
+			         	  </div>
+
+			         	  <div class="form-group">
+			         	  	  <div class="col-md-4" style="margin: 0 19%;">
+			         	  	  	<button type="button" name="" onclick="Save()" id="save" class="btn btn-success btn-md">Salvar Pergunta</button>
+			         	  	  </div>
+			         	  </div>
+			         	 </div>
+                       </form>
+                       {% endfor %}
+
+                      <form class="form-horizontal">
+                          <div class="col-md-6">
+                          	 <div id="div-group" class="form-group"  >
+				         	  <label class="control-label col-md-2" for="">Lista de Questões</label>
+				         	  	<div class="col-md-8">
+				         	  	  <select name="id_question" class="form-control border-none" id="id_question" >
+				         	  	 	{% for pergunta in post_questions %}
+				         	  	 	<option value="{{pergunta.id}}">{{pergunta.description_question}}</option>
+				         	  	 	{% endfor %}
+				         	  	 </select>
+				         	  	</div>
+				         	  </div>
+
+				          <div class="form-group">
+			         	   	<label class="control-label col-md-2" for="add">
+			         	   		<span class="material-icons" id="add_alter" style="color:#5cb85c;" onclick="addAlternativa(this)">add_circle</span>
+			         	   		<span class="material-icons" id="remove-alter" onclick="removeAlternativa()">remove_circle</span>
+			         	   	</label>
+			         	   		
+			         	  	  <div class="col-md-8" id="alternativa">
+			         	  	     <input type="text" name="resposta" id="resposta" class="form-control border-none" value="" placeholder="Add Alternativa" 
+			         	  	     disabled="">
+			         	  	  </div>
+			         	  </div>
+
+
+				          <div class="form-group">
+			         	   	<label class="control-label col-md-2" for="add">
+			         	   		<span class="material-icons" id="add_input" style="color:#5cb85c;" onclick="handleAddInputText(this)">add_circle</span></label>
+			         	  	  <div class="col-md-8" id="alternativa">
+			         	  	    <select name="text_input" class="form-control" id="add_input_text" disabled="">
+			         	  	    	<option >Adicionar campo de texto para essa pergunta ?</option>
+			         	  	    	<option value="0">NÃO</option>
+			         	  	    	<option value="1">SIM</option>
+			         	  	    </select>
+			         	  	  </div>
+			         	  </div>
+
+			         	  <div class="form-group">
+			         	  	  <div class="col-md-8" >
+			         	  	  	<button type="button" name="" onclick="SaveAnswer()" style="display:none; " id="saveanswer" class="btn btn-success btn-md">Salvar Alternativa</button>
+			         	  	  </div>
+			         	  </div>
+                         </div>
+			           </div> 	  
+                     </form>
+

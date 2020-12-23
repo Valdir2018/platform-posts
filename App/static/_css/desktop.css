@@ -1,0 +1,499 @@
+body {
+  font-family: Roboto sans-serif !important;
+	/*background: #ebebef;*/
+	background: #ebebef !important;
+  margin: 0;
+  padding: 0;
+  color: #585858 !important;
+
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+.topo-header{
+	width: 100%;
+	padding: 10px;
+}
+.banner-home {
+	top: 19px;
+	left: -63px;
+	right: 0;
+
+}
+.banner-home img {
+    width: 103%;
+}
+.panel {
+  border-radius: 0 !important;
+  
+}
+
+.timeline-footer {
+  cursor: pointer !important;
+  /*position: relative !important;*/
+  /*position: relative;
+  z-index: 1;*/
+}
+
+
+.username{
+  /*display: inline!important;*/
+  top: 2px !important;
+  position: relative!important;
+  left: 8%;
+  color: white;
+  margin-bottom: 10px;
+}
+.panel .p-title {
+  margin: 2.2% 7%;
+  font-size: 1.2em;
+  position: relative;
+}
+
+
+/* tables */
+#tabela thead tr {
+  /*background: #1a3c82e6;*/
+  background: #ef5a21;
+  color: #fff;
+}
+#tabela_filter input[type=search]   {
+  width: 400px;
+  border: 1px solid #ccc;
+  padding: 7px;
+  border-radius: 15px;
+}
+
+/*** //////////// style icons favorite  //*******/
+
+.favorito {
+  display:table;
+  margin: 0% 8% 3%;
+}
+
+.favorito #icon-curtir, #icon-descurtir {
+  display: table-cell;
+  /*display: inline-grid;*/
+}
+.favorito #icon-descurtir {
+  padding: 0 10px 0px;
+
+}
+.favorito #icon-descurtir {
+  padding: 0 7px 0px;
+
+}
+
+#icon-curtir .icon-cont-curt, .icon-cont-descurt {
+  position: relative;
+  display: flex;
+  margin: auto 23%;
+}
+
+.favorito #favorite-icon-ok {
+   color: #21cc2e;
+   cursor: pointer;
+   display: inline;
+
+}
+.favorito #favorite-icon-not {
+   color: #ef5a21;
+   cursor: pointer;
+   display: inline;
+   margin: auto 15%;
+
+}
+.favorito #favorite-icon-title {
+  position: relative;
+  display: table;
+ 
+}
+.favorito #favorite-icon-title-descutir{
+  position: relative;
+  display: table;
+ 
+}
+
+.table th, td {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.material-icons {
+  vertical-align: middle !important;
+  font-size: 30px !important;
+}
+
+
+/** ---------------------css timeline--------------------------------------- */
+
+/*.timeline {
+  margin: 0 0 45px;
+  padding: 0;
+  position: relative;
+}*/
+
+.post-media {
+   border-radius: 10px;
+   /*overflow: hidden;*/
+   margin: 3%  auto 0;
+   display: flex;
+   width: 89%;
+   cursor: pointer;
+   position: relative;
+   z-index: 1;
+}
+.post-tag {
+  border-radius: 20px;
+  width: auto;
+  border: 0;
+  background: blanchedalmond;
+  padding: 10px;
+  align-content: baseline;
+  position: absolute;
+  color: #434343;
+  font-weight: bold;
+  font-size: 13px;
+  margin: 0 1%;
+}
+
+.timeline {
+  margin: 2% -2% -3% -1%;
+  padding: 0;
+  /*position: relative;*/
+}
+
+.timeline-footer .radio {
+  margin-left: 7.8%;
+  margin-right: 1%;
+}
+
+.timeline::before {
+  border-radius: 0.25rem;
+  background: #dee2e6;
+  bottom: 0;
+  content: '';
+  left: 31px;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  width: 4px;
+}
+
+.timeline > div {
+  margin-bottom: 15px;
+  margin-right: 10px;
+  position: relative;
+  display: flex;
+ 
+}
+.timeline-body img {
+  
+  position: relative;
+  display: block;
+  width: 90%;
+  margin: 0 auto !important;
+
+}
+.timeline-footer #add {
+  margin: 0 5% !important;
+}
+
+.timeline > div::before, 
+.timeline > div::after {
+  content: "";
+  display: table;
+}
+
+.timeline > div
+ > .timeline-item {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  background: #ffffff;
+  /*color: #495057;*/
+  margin-left: 60px;
+  margin-right: 15px;
+  margin-top: 0;
+  padding: 0;
+  position: relative;
+}
+
+.timeline > div > .timeline-item > .time {
+  color: #999;
+  float: right;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.timeline > div > .timeline-item > .timeline-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  color: #495057;
+  font-size: 16px;
+  line-height: 1.1;
+  margin: 0;
+  padding: 10px;
+}
+
+.timeline > div > .timeline-item > .timeline-header > a {
+  font-weight: 600;
+}
+
+.timeline > div > .timeline-item > .timeline-body,
+.timeline > div > .timeline-item > .timeline-footer {
+  padding: 10px;
+}
+.timeline > div > .timeline-item > .timeline-body > img {
+  margin: 10px;
+}
+
+.timeline > div > .timeline-item > .timeline-body > dl, .timeline > div > .timeline-item > .timeline-body ol, .timeline > div > .timeline-item > .timeline-body ul {
+  margin: 0;
+}
+
+.timeline > div > .timeline-item > .timeline-footer > a {
+  color: #ffffff;
+}
+
+/*.timeline > div > .fa,
+.timeline > div > .fas,
+.timeline > div > .far,
+.timeline > div > .fab,
+.timeline > div > .glyphicon,
+.timeline > div > .ion {
+  background: #adb5bd;
+  border-radius: 50%;
+  font-size: 15px;
+  height: 30px;
+  left: 18px;
+  line-height: 30px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 30px;
+}*/
+
+
+.timeline > div > .fa,
+.timeline > div > .fas,
+.timeline > div > .far,
+.timeline > div > .fab,
+.timeline > div > .glyphicon,
+.timeline > div > .ion {
+  background: #245de5;
+  border-radius: 50%;
+  font-size: 15px;
+  height: 39px;
+  left: 11px;
+  line-height: 38px;
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  width: 38px;
+}
+
+
+.timeline > .time-label > span {
+  border-radius: 4px;
+  background-color: #ef5a21;
+  display: inline-block;
+  font-weight: 600;
+  padding: 5px;
+  color: white;
+  padding: 10px;
+  
+  margin: 7px;
+  position:  relative !important;
+
+}
+
+
+@media(max-width: 375px) {
+  .timeline > .time-label > span {
+    display: none;
+  }
+  .timeline > div::before, 
+  .timeline > div::after {
+    content: "";
+    display:none;
+}
+
+
+@media(max-width:768px) {
+  
+  .content {
+     padding-right: 0px !important;
+     padding-left: 0px !important;
+  }
+
+  .panel  {
+    text-align: justify !important;
+  }
+  /* menu desktop hide */
+  .main-menu {
+    display: block;
+    /* position: absolute; */
+    position: fixed;
+    top: 0px;
+    height: 10%;
+    width: 100%;
+    -webkit-transition: width .05s linear;
+    transition: width .05s linear;
+  }
+  .main-menu.toggled{
+    height: 50%;
+  }
+  #wrapper.toggled {
+    padding-top: 250px;
+  }
+}
+
+
+  .timeline > div > .fa,
+  .timeline > div > .fas,
+  .timeline > div > .far,
+  .timeline > div > .fab,
+  .timeline > div > .glyphicon,
+  .timeline > div > .ion {
+    /* background: #245de5; */
+    border-radius: 50%;
+    font-size: 15px;
+    height: 39px;
+    left: 0;
+    line-height: 38px;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+    width: 38px;
+    display: none;
+   }
+
+   .timeline > div
+     > .timeline-item {
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+      border-radius: 0.25rem;
+      background: #ffffff;
+      color: #495057;
+       margin-left: 5px; 
+      margin-right: 5px;
+      margin-top: 0;
+      padding: 0;
+      position: relative;
+    }
+}
+
+.timeline-inverse > div > .timeline-item {
+  box-shadow: none;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.timeline-inverse > div > .timeline-item > .timeline-header {
+  border-bottom-color: #dee2e6;
+}
+
+/*---- RADIOBUTTON PERSONALIZADO */
+.checkcontainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none; /* Chrome, Opera, Safari */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
+
+/* Hide the browser's default checkbox */
+.checkcontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkcontainer:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkcontainer input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkcontainer input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkcontainer .checkmark:after {
+    left: 10px;
+    top: 6px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Create a custom radio button */
+.radiobtn{
+   position: absolute;
+   top: 0;
+   left: -9px;
+   height: 25px;
+   width: 25px;
+   background-color: #d8d7d7;
+   border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.checkcontainer:hover input ~ .radiobtn{
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.checkcontainer input:checked ~ .radiobtn{
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radiobtn:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.checkcontainer input:checked ~ .radiobtn:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.checkcontainer .radiobtn:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}

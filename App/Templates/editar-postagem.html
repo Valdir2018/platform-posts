@@ -1,0 +1,143 @@
+<h3 class="text-left" style="margin-left:11%;"><span class="material-icons ">edit</span> Editar Postagem 
+  
+</h3>
+
+<div><br/><br/><br/></div>
+{% for data in editar_postagem %}
+  <form class="form-horizontal"  method="POST" action="index.php?class=PostActions&method=action" enctype="multipart/form-data">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-1" for="">Titulo</label>
+            <div class="col-md-8">
+                <input type="hidden" name="id"  class="form-control border-none" value="{{data.id}}" >
+                <input type="text" name="titulo_post"  class="form-control border-none" value="{{data.titulo_post}}" placeholder="" >
+                <input type="hidden" name="id_type_post"  class="form-control border-none" value="{{data.id_type_post}}" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-1" for="">Arquivo</label>
+            <div class="col-md-8">
+                <input type="file" name="path_post" value="{{data.path_post}}" class="form-control border-none">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-1 " for="">Produto</label>
+            <div class="col-md-8">
+                <select name="id_produto"  class="form-control border-none">
+                    {% for produto in produtos %}
+                    <option value="{{produto.id_product}}">{{produto.name_product}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-1 " for="">Empresa</label>
+            <div class="col-md-8">
+                <select name="id_companie" data-js="oculto" class="form-control border-none">
+                    {% for empresa in empresas %}
+                    <option value="{{empresa.id_companie}}">{{empresa.name_companie}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-1" for="comment">Comentário</label>
+            <div class="col-md-8">
+                <input type="text" name="comment"  class="form-control border-none" value="{{data.comments}}" placeholder="" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-1" for="">Publicação</label>
+            <div class="col-md-8">
+                <input type="text" name="date_post" value="{{data.date_post}}" class="form-control border-none">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5" style="box-shadow: 0 -1px 6px 1px rgb(163 160 160); min-height: 350px;">
+        <input type="hidden" name="path_post" id="filename"  class="form-control border-none" value="{{data.path_post}}" >
+        <div id="image">
+            <!--  Recebe componente de imagem -->
+        </div>
+        <div id="video">
+            <!-- Recebe um componente de video -->
+        </div>
+    </div>
+    <div class="col-md-10">
+        <input type="submit" name="post_edit"  class="btn btn-warning" value="Salvar Edições" style=" position:relative;left:11%;">
+    </div>
+</form>
+{% endfor %}
+
+
+
+
+
+<script>
+  
+    function mapper(val) {
+      var ext = '';
+      var arr = ['mp4','m4v','ogg','webm'];
+      if (val.value !== '') {
+           for(var i =0; i <=  arr.length; i++) {
+             if (arr[i] === val) {
+                 // return ext = arr[i] == val ;
+                 return true;
+             } 
+          }
+          return false;
+      }
+    }
+
+
+    /** Define  um componente de renderização  dinâmico na pag [ editar-postagem ] **/
+    function createElementHTML() {
+        var element_html = '';
+        let filename  = document.getElementById('filename').value;
+        let div_img   = document.getElementById("image");
+        let div_video = document.getElementById("video");
+
+        // cria os elementos, video, img e os attr  de cada item
+        let tag_img   = document.createElement('img');
+        let tag_video = document.createElement("video");
+        let source    = document.createElement('source');
+        let att_video = document.createAttribute("controls");
+        let src_type  = document.createAttribute("type");
+        var part_ext  = filename.split(".", 2);
+        let extensao  = part_ext[1];
+
+
+        if ( mapper(extensao) === false ) {
+            tag_img.classList.add("img-responsive"); 
+            tag_img.src  = "App/static/arquivo/imagens/"+extensao+"/"+filename;
+            element_html = div_img.appendChild(tag_img); // add imagem div id image
+        }
+        
+        if ( typeof extensao !== 'undefined'  ) {
+            if ( mapper(extensao) ) {
+                // add class for video
+               tag_video.classList.add("post-media");  // add class de estilo video
+               tag_video.style.width = "300";          // defino a largura do video
+               tag_video.controlsList="nodownload";
+               tag_video.setAttributeNode(att_video);  // add atributo controls a tag video
+
+               // source crio o src do video e o mime type
+               source.src  = "App/static/arquivo/video/"+filename;
+               source.type = "video/"+part_ext[1];
+
+               tag_video.appendChild(source);
+               element_html = div_video.appendChild(tag_video); // add a tag no elemento pai
+            }
+        } 
+        else {
+          element_html = '';
+        }
+
+        return element_html;
+    }
+    
+    window.onload = createElementHTML;
+
+</script>
+
+
+

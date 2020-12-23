@@ -1,0 +1,197 @@
+
+  <style type="text/css">
+  
+#add_message {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #4caf50;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 80%;
+  bottom: 30px;
+  font-size: 17px;
+}
+#add_message.show { 
+   visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+  </style>
+			<h3 class="text-left" style="margin-left:9%;">
+				<span class="material-icons">add_to_queue</span> Adicionar Postagem</h3>
+              <div><br/><br/><br/></div>
+		       <form  method="POST"  action="index.php?class=PostForm&method=savePost" class="form-horizontal" 
+				  enctype="multipart/form-data">
+			         <div class="row">
+			         	 <div class="col-md-6">
+			         	   <div class="form-group">
+			         	 	<label class="control-label col-md-2" for="">Titulo</label>
+			         	 	<div class="col-md-8">
+			         	 		<input type="text" name="titulo" class="form-control  border-none" placeholder="Titulo da postagem">
+			         	 	</div>
+			         	  </div>
+			         	  <div class="form-group">
+			         	 	<label class="control-label col-md-2" for="path_posts">Arquivo</label>
+			         	 	 <div class="col-md-8">
+			         	 	 	<span id="msg_error" style="display:none; color:red; ">Formato de Arquivo não é suportado !</span>
+			         	 		<input type="file" name="path_posts" id="file" accept='video/*,image/*' class="form-control border-none" 
+			         	 		 placeholder="Arquivo" onchange='previewFile(event)' >
+			         	 		 <input name="MAX_FILE_SIZE" value="890000000"  type="hidden"/>
+			         	 	 </div>
+			         	  </div>
+			         	  <div class="form-group" >
+			         	    <label class="control-label col-md-2" for="">Item</label>
+			         	 	 <div class="col-md-8" >
+			         	 		<select name="produto_id" class="form-control border-none" >
+			         	 			<option value="">*</option>
+			         	 			{% for produto in produtos %}
+			         	 			  <option value="{{produto.id_product}}">{{produto.name_product}}</option>
+                                    {% endfor %}
+			         	 		</select>
+			         	 		<input type="hidden" name="type_post" value="1">
+			         	 	 </div>
+			         	  </div>
+			         	 <div class="form-group">
+			         	 	<label class="control-label col-md-2" for="">Conteudo</label>
+			         	 	 <div class="col-md-8">
+			         	 	   <textarea name="comment" class="form-control border-none">-</textarea>
+			         	 	 </div>
+			         	 </div>
+			         	  <div class="form-group">
+			         	  	 <div class="col-md-3 col-md-offset-1" style="margin: 0 18%;">
+			         	  	 	<input type="submit" name="cadastrar" class="btn btn-success" value="cadastrar" id="btncad">
+			         	  	 </div>
+			         	  </div>
+			         </div>
+			         <div class="col-md-6">
+			             <div class="form-group" style=" width: 82%; max-height: 400px; overflow: hidden; object-fit: fill;">
+			             	<img src="App/static/_img/preview.png"  class="thumbnail" style="width: 100%; height: 400px;" id="preview">
+			             	<img id='output' style="width:100%; ">
+			             </div>
+			         </div>
+			         	<p id="add_message" style="display:none;">Resposta Salva com sucesso ! <span class="material-icons">done_all</span></p>
+			         </div>
+				 </form>
+
+		      <div class="panel-body">
+		      	 <div class="row">
+		      	 	<div class="col-md-12">
+		      		   <h3 class="text-center">Lista de Postagens</h3><hr/>
+		      		   <div style="padding: 15px;"></div>
+		      	    </div>
+
+		      	     <div class="container">
+		      	       <div class="col-md-12">
+			      	    	<table class="table table-responsive table-bordered">
+			      	    	  <thead style="background: #ef5a21;color: white;">
+			      	    	    <tr>
+			      	    	   	  	<th>Titulo Postagem</th>  
+			      	    	   	  	<th>Comentário</th>  
+			      	    	   	  	<th>Data Publicação</th> 
+			      	    	   	  	<th width="25%">Ações</th>
+			      	    	    </tr>
+			      	    	  </thead>
+			      	    	  <tbody>
+			      	    	  	 {% for post in post_all %}
+			      	    	  	  <form class="form-horizontal" method="POST" action="index.php?class=PostActions&method=action">
+			      	    	  	  	 <tr>
+	                                <td class="edit">
+	                                	<input type="hidden" name="id"           value="{{post.id}}">
+	                                	<input type="hidden" name="id_type_post" value="{{post.id_type_post}}">
+	                                	<input type="hidden" name="titulo_post"  value="{{post.titulo_post}}"> <span> {{post.titulo_post}} </span> </td>
+	                                	<input type="hidden" name="path_post"    class="hidden"  value="{{post.path_post}}">
+	                                	
+	                                <td>
+	                                	<input type="hidden" name="comments"     value="{{post.comments}}">{{post.comments}} </td>
+	                                <td class="edit" >
+	                                	<input type="hidden" name="date_post"    value="{{post.date_post}}"> {{post.date_post}}  </td>
+	                               <td style="text-align: end;">
+	                                	<button type="submit" class="btn btn-xs btn-warning" name="add_pergunta"> Add Perguntas </button>
+	                                	<button type="submit" class="btn btn-xs btn-warning" name="postagem_editar"> Editar </button>
+
+                                        <a  data-toggle="popover" title="Excluir Postagem" data-placement="top" data-content="Deseja esta postagem ?"  >
+                                          <input type="button" class="btn btn-xs btn-danger del"  data-touserid="{{post.id}}"   onclick="deleteOk(this)" value="Excluir" ">
+
+                                          <input type="button"  value="NÃO" id="not_del"  class="btn btn-xs btn-warning not-del" data-touserid="{{post.id}}" style="display:none;"   onclick="hide()" />
+	                                	</td>
+                                       </a>
+                                 
+	                                	
+	                               </tr>
+			      	    	  	  </form>
+			      	    	     {% endfor%}
+			      	    	  </tbody>
+			      	    	</table>
+		      	         </div>
+		      	     </div>
+		      	 </div>
+		      </div>
+		   </div>
+         </div>
+          
+<script src="App/static/_js/jquery.min.js"></script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+         $('[data-toggle="popover"]').popover();   
+      });
+
+    
+      function deleteOk(value) {
+        var btnConfirm = $(value).attr('value', 'SIM');       
+        $(value).addClass("btn-danger");
+        $(value).css({"padding": "1px 5px"});
+        btnConfirm.click(function() {
+        	$(value).attr('type', 'submit');
+            message("Postagem deletada.");
+
+        });
+        $(value).attr('name', 'postagem_excluir');
+        notDelete();
+        
+      }
+
+      function notDelete() {
+      	var id = $()
+      	var elemento = $(".btn").attr('data-touserid');
+      	$(".btn").css({"display": "inline"});
+      	elemento.css({"display": "block"});
+       
+      }
+
+      function hide() {
+          $(".not-del").css({"display": "none"});
+          $(".del").attr('value', 'Excluir'); 
+      }
+
+</script>
+
+      
+ 

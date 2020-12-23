@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>SISTEMA VOZ DO OPERADOR - LOGIN</title>
+    <link rel="stylesheet" type="text/css" href="App/static/_css/login.css">
+	
+</head>
+<body>
+
+ 
+
+
+    <div class="menu">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <!-- <h3 class="title-login">Bem-Vindo</h3> -->
+                <button type="button" class="toggle-btn" id="log" onclick="login() "  style="color: white;">Login</button>
+                <button type="button" class="toggle-btn" id="rest" onclick="register()" >Esqueci a senha</button>
+            </div>
+          <form id="login" class="input-group" action="?class=LoginForm&method=login" method="POST" >
+            <input type="text" name="login" class="input-field" placeholder="Matricula">
+            <input type="password" name="senha" class="input-field" placeholder="Senha">
+            <input type="checkbox" class="check-box"><span>Remember Passowd</span>
+            <button type="submit" name="logar" class="submit-login" value="Login">Acessar</button>
+         </form>
+        <form id="register" class="input-group-form2" action="?class=UsuarioForm&method=reset" method="POST" >
+            <input type="text" name="matricula" class="input-field" placeholder="Id de Acesso ">
+            <input type="text" name="nome" class="input-field" placeholder="Nome do usuário">
+            <select class="input-field" name="product_name">
+                <option>* Produto </option>
+                <option value="PF">* Itau PF </option>
+                <option value="PJ">* Itau PJ</option>
+            </select>
+            <p style="margin-top: 5%;"></p><br/>
+            <button type="submit" name="resetar" class="submit-login">Solicitar Reset</button>
+        </form>
+
+        </div>
+    </div>
+
+	<script src="App/static/_js/jquery.min.js"></script>
+	<script src="App/static/_js/bootstrap.min.js"></script>
+	
+
+    <script>
+        
+        var  handleLogin = document.getElementById('login');
+        var  handleRegister = document.getElementById('register');
+        var  handleButton = document.getElementById('btn');
+        function login() {
+          handleLogin.style.left = "50px";
+          handleRegister.style.left = "450px";
+          handleButton.style.left = "0";
+          handleButton.style.width = "86px";
+      
+        }
+        function register() {
+          handleLogin.style.left = "-400px";
+          handleRegister.style.left = "50px";
+          handleButton.style.left = "110px";
+          handleButton.style.width = "150px";
+        }
+
+        $(document).on("click", "#log", function() {
+
+            $(this).css('color','white');
+            $("#rest").css('color','#424242');
+        });
+
+        $(document).on("click", "#rest", function() {
+            $(this).css('color','white');
+            $("#log").css('color','#424242');
+        });
+
+    </script>
+
+</body>
+</html>

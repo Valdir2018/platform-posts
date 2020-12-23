@@ -1,0 +1,243 @@
+       
+
+
+
+         <!-- Page Content -->
+          <div id="page-content-wrapper">
+              <div class="container-fluid content">
+                  <div class="row" >
+                      <div class="col-lg-12" >
+                           <div class="banner-home" >
+                             <img src="App/static/_img/banner-inicial-platform.png">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xs-12 col-lg-12">
+                     <!-- <div class="row"> -->
+                        <!-- <div class="col-xs-12 col-md-12"> -->
+                          <div class="timeline" > 
+                            {conteudo}
+                       </div>
+                     <!-- </div> -->
+                  <!-- </div> -->
+              </div>
+           </div>
+        </div>
+
+
+
+
+      <div id="modal"> </div>
+
+
+
+
+      <style>
+
+      .modal-header {
+         padding: 15px;
+         border-bottom: 1px solid #e5e5e5;
+         background: #dc521d !important;
+         color: white !important;
+      }
+      .portal-form {
+         width: 90% !important;
+         margin: 0 auto !important;
+      }
+      </style>
+
+  <script src="App/static/_js/jquery.min.js"></script>
+  <script src="App/static/_js/bootstrap.min.js"></script>
+  <script src="App/static/_js/main.js"></script>
+  <script type="text/javascript">
+
+         var formulario   = document.getElementById('form');
+         var buttoncreate = document.getElementById('createInput');
+         var divgroup     = document.getElementById('divgroup');
+
+         // função responsável por transportar os dados via ajax 
+         // envia via json todas as respostas p/ o controlador
+         function App() {
+          $(document).on("click", "#get", function() {
+             showToast();
+             const element_value   = $(this).attr('value'); 
+             const id_question     = $(this).attr('name');
+             const postagem_id     = $(this).attr('data-js'); // obtem o id da postgagem
+
+
+             const sessao_user_id  = document.getElementById('userid').innerText;
+             $.ajax({
+               url: 'index.php?class=PostForm&method=saveForm',
+               method:'POST',
+               enctype: "multipart/form-data",
+               data:{element_value, postagem_id, sessao_user_id, id_question},
+               dataType: "json",
+               success:function(response) { 
+
+               }
+              })
+           })
+         } 
+        window.onload =  App;
+
+        function showToast() {
+          var x = document.getElementById("message_sucess");
+           x.className = "show";
+           setTimeout(function() {
+            x.className = x.className.replace("show", ""); 
+          }, 3000);
+        }
+
+        function show() {
+          formulario.style.display = 'block';
+          buttoncreate.style.display = 'block';
+        }
+
+        buttoncreate.addEventListener("click", function(e) {
+          e.preventDefault();
+          var novoElemento = document.createElement('input');
+          novoElemento.classList.add("form-control");
+          divgroup.appendChild(novoElemento);
+                                
+        }, false);
+
+      </script>
+      <script>
+        
+       
+        
+        const atualiza_senha = document.getElementById('pws').innerText;
+        if ( atualiza_senha  === "NAO") {
+            $(document).ready(function(){
+              $('#updatePass').modal('show');
+              $(document).on("click","#atualizar", function() {
+                $('#updatePass').modal('hide');
+              });
+            });
+            AtualizaSenha();                 
+
+        }
+          function updatePass() {
+               let name = document.getElementById('user').innerText;
+               var content = "<div class='modal fade' id='updatePass' role='dialog' style='top:24%;'>";
+                   content += "<div class='modal-dialog'>";
+                      content += "<div class='modal-content'>";
+                           content += "<div class='modal-header' style='font-size:20px;font-family:Roboto;font-weight:600;'>";
+                              content += "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
+                              content += "<div class='col-12'>";
+                                  content += "<h4 class='text-center'> <span style='font-size: 1.6em;' class='Large material-icons'>mood</span> </h4>";    
+                                    content += "<div class='text-center' style='font-size:20px'> Olá, " + name +" <br/><br/> Bem-Vindo ao portal do operador ! </div>";
+                                    content += "<p class='text-center'>";
+                                    content += "Para continuar você deve alterar sua senha !</p><br/>";
+                              content += "</div>";
+                           content += "</div>";
+                         content += "<form class='' method='POST' >";
+                           content += "<div class='modal-body'>";
+                               content += "<div class='form-group'>";
+                                 content += "<div class='col-12'>";
+                                  content += " <input type='password' name='novasenha' id='senha'  class='portal-form form-control' placeholder='DIGITE AQUI UMA NOVA SENHA'>";
+                                 content += "</div>";
+                             content += "</div>";
+                               content += "<div class='form-group'>";
+                                    content += "<div class='col-12'>";
+                                         content += "<input type='submit' name='Atualizar'  id='atualizar' value='Atualizar' class='btn btn-success btn-block portal-form'>";
+                                    content += "</div>";
+                                 content += "</div>";
+                               content += "</div>";
+                            content += "</form>";
+                          content += "</div>";
+                        content += "</div>";
+                     content += "</div>";
+                  $('#modal').html(content);
+        }   
+        updatePass();
+
+
+        function AtualizaSenha() {
+           $(document).on("click", '#atualizar', function() {
+              const novaSenha = document.getElementById('senha');
+              $.ajax({
+                  url: 'index.php?class=ListPost&method=saveForm',
+                  method:'POST',
+                  enctype: "multipart/form-data",
+                  data:{novaSenha},
+                  dataType: "json",
+                  success:function(response) {
+                     
+                  }  
+               })
+            })
+
+        }
+
+         $(document).on("click", "#favorite-icon-ok", function() {
+            const userid = document.getElementById('userid').innerText;
+            const postid = $(this).attr('value');
+            const liked  = 'liked';
+
+            const qtdeLikes   = $("#icon-cont-curt_"+postid).text();
+            const qtdedeslik  = $("#icon-cont-descurt_"+postid).text();
+
+            var total_deslike = parseInt( qtdedeslik );
+
+            if( qtdeLikes == 0 || qtdeLikes >= 1 ) {
+               if (  total_deslike > 0) {
+                 // var totaldeslike  = parseInt(total_deslike) - 1;
+               }
+               var  total_like = parseInt(qtdeLikes) + 1;
+            }
+           // let  total_like = parseInt(qtdeLikes) + 1;
+            const data_object = { userid: userid, postid: postid, liked: liked }
+             $.ajax({
+                url: 'index.php?class=ListPost&method=saveLiked',
+                method:'POST',
+                enctype: "multipart/form-data",
+                data: data_object,
+                dataType: "json",
+                success:function(response) {
+                  console.log(response);
+                }
+             })
+           
+            $("#icon-cont-curt_"+postid).html(total_like);
+            $("#icon-cont-descurt_"+postid).html(totaldeslike);
+
+        });
+
+
+         $(document).on("click", "#favorite-icon-not", function() {
+            const userid = document.getElementById('userid').innerText;
+            const postid = $(this).attr('value');
+
+            let qtde_desliked = $("#icon-cont-descurt_"+postid).text();
+            let qtde_liked    = $("#icon-cont-curt_"+postid).text();
+            var total_liked   = parseInt(qtde_liked);
+            if ( qtde_desliked == 0 || qtde_desliked >= 1  ) {
+              if (total_liked > 0) {
+                  var total_likes  = parseInt(total_liked) - 1;
+              }
+               var total_deslike  = parseInt(qtde_desliked) + 1;
+            }
+           // var total_deslike  = parseInt(qtde_desliked) + 1;
+
+            const desliked  = 'desliked';
+            const data_object = { userid: userid, postid: postid, desliked: desliked }
+             $.ajax({
+                url: 'index.php?class=ListPost&method=saveDesliked',
+                method:'POST',
+                enctype: "multipart/form-data",
+                data: data_object,
+                dataType: "json",
+                success:function(response) {
+                  console.log(response);
+                }
+             })
+
+            $("#icon-cont-descurt_"+postid).html( total_deslike );
+            $("#icon-cont-curt_"+postid).html( total_likes );
+
+               
+        });
+
+</script>
+

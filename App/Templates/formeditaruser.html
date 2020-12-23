@@ -1,0 +1,72 @@
+
+<h3 class="text-left" style="margin-left:5%;">
+<span class="material-icons ">edit</span>
+Editar Usuário</h3>
+<br/><br/><br/><br/><br/>
+<div style="margin-left:5%;">
+	 	
+	<form class="form-horizontal" method="POST" action="index.php?class=UserEdit&method=save">
+    <!-- {% for usuario in usuarios_list %} -->
+	  <div class="col-md-6">
+		<div class="form-group">
+		  <label  class="col-md-1 form-label" for="">Matricula</label>
+		   <div class="col-md-8">
+		      <input type="hidden" name="id" value="{{usuario.id}}" >		
+		      <input type="text" name="user_login" value="{{usuario.login_user}}" class="form-control border-none">		
+		   </div>
+		</div>
+		<div class="form-group">
+		  <label  class="col-md-1 form-label" for="">Nome</label>
+			<div class="col-md-8">
+		      <input type="text" name="name_user" value="{{usuario.name_user}}" class="form-control border-none">		
+			</div>
+		</div>
+		
+		<div class="form-group">
+		  <label  class="col-md-1 form-label" for="">Empresa</label>
+			<div class="col-md-8">
+		     <select name="id_companie" class="form-control border-none" onmouseenter="hideOptionCompany()">
+		     	<option id="empresa" value="{{usuario.id_companie}}">{{usuario.empresa}}</option>
+      		   {% for empresa in empresas %}
+      			<option value="{{empresa.id_companie}}">{{empresa.name_companie}}</option>
+      		   {% endfor %}
+      	     </select>		
+			</div>
+		</div>
+		<div class="form-group">
+		  <label  class="col-md-1 form-label" for="">Produto</label>
+			<div class="col-md-8">
+		      <select name="id_produto"  class="form-control border-none" onmouseenter="hideOptionProduct()">
+      			  <option id="prod" value="{{usuario.id_product}}">{{usuario.product}}</option>
+      			{% for produto in produtos %}
+      			  <option value="{{produto.id_product}}">{{produto.name_product}}</option>
+      			{% endfor %}
+      		</select>	
+			</div>
+		</div>
+		<div class="form-group">
+		  <label  class="col-md-1 form-label" for="">Nivel</label>
+			<div class="col-md-8">
+		     <select name="id_level"  class="form-control border-none" onmouseenter="hideOptionLevel()">
+      				<option id="default" value="{{usuario.id_niv}}">{{usuario.name_lv}}</option>
+      			{% for acesso in nivel_acesso %}
+      				<option value="{{acesso.id_level}}">{{acesso.name_level}}</option>
+      			{% endfor %}
+      			</select>
+
+			</div>
+		</div>
+
+		
+
+	  	<div class="form-group">
+			<label for="" class="col-md-1 form-label"></label>
+			<div class="col-md-8">
+		      <input type="submit" name="update_usr" value="Atualizar" class="btn btn-md btn-warning" >		
+			</div>
+		</div>
+	  </div>
+	   <!-- {% endfor %} -->
+    </form>
+<p id="add_message" style="display:none;">Resposta Salva com sucesso !</p>
+</div>

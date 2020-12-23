@@ -1,0 +1,76 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    box-shadow: border-box;
+    font-size: 1.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 28px !important;
+}
+  
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav, 
+.topo-header   {
+    background: #1a3c82;
+    color: white;
+}
+  
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #818181;
+    display: flex;
+    transition: 0.3s;
+}
+  
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+.sidenav a {
+    color: white;
+}
+.sidenav a:hover {
+   text-decoration: none;
+}
+  
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+a p {
+  margin: 3% 0 3% !important;
+}
+  
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+/* Estilo dos icones */
+.title-icon-48 {
+    font-size: 48px !important;
+    vertical-align: middle !important;
+}
+.icon-18 {
+    font-size: 30px !important;
+}
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

@@ -1,0 +1,195 @@
+label {
+	min-width: 122.28px;
+}
+.navbar-bg-blue {
+	background: #182359;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+}
+.nav-item > .nav-link, .navbar-bg-blue > a{
+	color: white;
+}
+
+.icon-monetization{
+	margin: 0 8%;
+}
+.navbar-toggler-icon {
+	color: white;
+}
+#bg-background {
+	background: url(../_img/portocred_banner.jpg);
+	background-size: cover;
+	background-position:  center;
+	background-attachment: fixed;
+	background-clip: border-box;
+	padding-top:  300px;
+	padding-bottom: 170px;
+	border-radius: 0;
+
+}
+
+.border-none {
+	border-radius: 0 !important;
+}
+.clearfix {
+	width: 100%;
+	padding: 100px;
+}
+/* icons style */
+.material-icon {
+	width: 35px;
+    height: 35px;
+    display: inline;
+    position: absolute;
+}
+.material-icons {
+    cursor: pointer;
+
+}
+.material-icons#remove-alter {
+    color: #d21b24;
+}
+.container-footer{
+	width: 100%;
+	background-color: #414142;
+    bottom: 0;
+    padding: 10px;
+}
+
+#error, #error_porcentagem {
+   color: red;
+}
+#parcela_atual {
+	background: orange;
+	color: #fff;
+}
+
+#parcela_atual::-webkit-input-placeholder {
+    color: white !important;
+    font-size: 16px;
+}
+#parcela_atual:-moz-placeholder {
+    /* FF 4-18 */
+   color: white !important;
+}
+.form-esquerda {
+	float: left;
+	height: 550px;
+    border: 1px solid #ddd !important;
+    margin: 1px;
+}
+.form-direita {
+	float: right !important;
+	margin: 0px 1px;
+}
+
+.form-esquerda, 
+.form-direita  {
+   width: 49%;
+   display: inline;
+   height: 350px;
+   border: 1px solid #ddd !important;
+}
+
+.form-w {
+	display:inline !important;
+    width: 73% !important;
+    margin: 2% 0;
+}
+
+.form-control {
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+/* form comments timeline de postagens*/
+.form-inline#form-comments{
+    /*display: flex;*/
+    position: absolute;
+    left: 22.5%;
+    bottom: 1%;
+}
+
+.form-inline#form-comments input {
+	width: 620px;
+	border-radius: 30px;
+	margin: 0 10px;
+}
+
+.form-inline#form-comments .fa-comments {
+    vertical-align: bottom;
+}
+.form-inline#form-comments .button-comment-send {
+    color:#1dad21;
+    cursor: pointer; 
+}
+
+.flex-avaliacao {
+
+    display: flex;
+    left: 21%;
+    bottom: 5%;
+
+}
+
+.flex-avaliacao .fa-star{
+	color:#38d32f;
+}
+
+.panel #comment_justify {
+	width: 50%;
+    position: relative;
+    left: 14%;
+    bottom: 6px;
+}
+
+.flex-coment-justify {
+	display: flex;
+    margin: 0 9.3%;
+}
+
+.flex-coment-justify input {
+    width: 80%;
+    border-radius: 30px;
+}
+.flex-coment-justify input, .save{
+    margin: -7px 0 10px 10px;
+
+}
+
+.flex-avaliacao .far {
+    cursor: pointer;
+}
+
+.flex-avaliacao {
+   bottom: 80px;
+}
+.far:hover{
+    color:  #1a3c82;
+}
+
+
+
+.form-w:focus {
+	border: 1px solid #007bff !important;
+}
+
+.m-1 {
+  margin: 12% auto !important;
+}
+
+@media (min-width: 568px) {
+	.col {
+		width: 100%;
+	}
+}
